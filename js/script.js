@@ -2,7 +2,8 @@ let data;
 let mode = 0;
 let next;
 let reset;
-let location;
+
+let dropdownLocation;
 
 function preload() {
   data = loadJSON(
@@ -28,6 +29,19 @@ function setup() {
   reset.mousePressed(() => {
     mode = 0;
   });
+}
+
+//dropdown menu of the location names in the JSON file
+function dropdownLocation() {
+  dropdownLocation = createSelect();
+  dropdownLocation.position(100, 100);
+  dropdownLocation.hide();
+  for (let i = 0; i < data.length; i++) {
+    dropdownLocation.option(data[i].location);
+  }
+  //save the selected location ID in a variable
+  let selectedLocation = dropdownLocation.value();
+  console.log(selectedLocation);
 }
 
 function draw() {
