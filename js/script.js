@@ -44,16 +44,68 @@ function setup() {
     arrButtons[i].mousePressed(function () {
       mode++;
       console.log(mode);
+      // create s static backgrounf
+      // worBack = createDiv();
+      // worBack.position(0, 0);
+      // worBack.size(width, height);
+      // worBack.style(
+      //   "background-color",
+      //   "rgba(" +
+      //     random(50, 100) +
+      //     "," +
+      //     random(150, 200) +
+      //     "," +
+      //     random(50, 100) +
+      //     ",0.5)"
+      // );
       //create a rectangle with the workshop name
       worName = createDiv(wor.name);
+      worName.position(50, 50);
+      worName.size(500, 150);
+      worName.style("font", "Roboto");
+      worName.style("color", "black");
+      worName.style("font-size", "25px");
+      worName.style("font-weight", "bold");
+      worName.style("text-align", "center");
+      worName.style("vertical-align", "middle");
+      worName.style("border", "1px solid black");
+
+      worName.style(
+        "background-color",
+        "rgba(" +
+          random(50, 100) +
+          "," +
+          random(150, 200) +
+          "," +
+          random(50, 100) +
+          ",0.5)"
+      );
 
       //create a rectangle with the workshop description
       worDesc = createDiv(wor.description);
+      worDesc.position(50, 200);
+      worDesc.size(500, 450);
+      worDesc.style("color", "black");
+      worDesc.style("font-size", "20px");
+      worDesc.style("border", "1px solid black");
+      worDesc.style("vertical-align", "middle");
+      worDesc.style("text-align", "center");
+      worDesc.style(
+        "background-color",
+        "rgba(" +
+          random(50, 100) +
+          "," +
+          random(150, 200) +
+          "," +
+          random(50, 100) +
+          ",0.5)"
+      );
 
       //find the available seats for the workshop
       maxSeats = wor.maxSeats;
       availableSeats = wor.availableSeats;
       takenSeats = availableSeats / maxSeats;
+      takenSeatsNumber = maxSeats - availableSeats;
       book = takenSeats * 300;
     });
   }
@@ -77,28 +129,18 @@ function screen1() {
 
 function screen2() {
   createCanvas(innerWidth, innerHeight); //canvas grootte aanpassen aan scherm
-  //random background color
-  background(220);
+  //background with clipboard
+  background("white");
+  background("rgba(150, 200, 140, 0.5)");
   console.log("screen2");
   arrButtons.forEach((button) => {
     button.hide();
   });
-  worName.position(50, 50);
-  worName.size(500, 150);
-  worName.style("background-color", "white");
-  worName.style("color", "black");
-  worName.style("font-size", "25px");
 
-  worDesc.position(50, 200);
-  worDesc.size(500, 450);
-  worDesc.style("background-color", "white");
-  worDesc.style("color", "black");
-  worDesc.style("font-size", "20px");
-
-  fill(255, 0, 0);
+  fill(150, 255, 140);
   rect(50, 650, 500, 50);
   fill(0, 255, 0);
-  rect(50, 650, 500 * takenSeats, 50);
+  rect(50, 650, 500 / takenSeatsNumber, 50);
   fill(0);
   text(
     "Beschikbare plekken: " + availableSeats + " van de " + maxSeats,
